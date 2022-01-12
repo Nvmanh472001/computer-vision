@@ -16,8 +16,9 @@ def parse_args():
 
 
 def make_edge_smooth(dataset_name, img_size) :
-    file_list = glob('dataset/{}/{}/*.*'.format(dataset_name, 'style'))
-    save_dir = 'dataset/{}/smooth'.format(dataset_name)
+    rootPath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    file_list = glob(rootPath + '/content/dataset/{}/{}/*.*'.format(dataset_name, 'style'))
+    save_dir = rootPath + '/content/dataset/{}/smooth'.format(dataset_name)
     os.makedirs(save_dir, exist_ok=True)
 
     kernel_size = 5
