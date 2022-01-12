@@ -11,14 +11,6 @@ HTTP_PREFIXES = [
     'data:image/jpeg',
 ]
 
-SUPPORT_WEIGHTS = {
-    'hayao',
-    'shinkai',
-}
-
-ASSET_HOST = 'https://github.com/ptran1203/pytorch-animeGAN/releases/download/v1.0'
-
-
 def read_image(path):
     """
     Read image from given path
