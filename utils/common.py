@@ -47,13 +47,8 @@ def load_checkpoint(model, checkpoint_dir, posfix=''):
 
 
 def load_weight(model, weight):
-    if weight.lower() in SUPPORT_WEIGHTS:
-        weight = _download_weight(weight)
-
-    # checkpoint = torch.load(weight,  map_location='cuda:0') if torch.cuda.is_available() else \
-    #     torch.load(weight,  map_location='cpu')
-    
-    checkpoint = torch.load(weight, map_location='cpu')
+    checkpoint = torch.load(weight,  map_location='cuda:0') if torch.cuda.is_available() else \
+        torch.load(weight,  map_location='cpu')
     
     model.load_state_dict(checkpoint['model_state_dict'], strict=True)
     epoch = checkpoint['epoch']
@@ -87,35 +82,6 @@ def initialize_weights(net):
 def set_lr(optimizer, lr):
     for param_group in optimizer.param_groups:
         param_group['lr'] = lr
-
-
-class DownloadProgressBar(tqdm):
-    '''
-    https://stackoverflow.com/questions/15644964/python-progress-bar-and-downloads
-    '''
-    def update_to(self, b=1, bsize=1, tsize=None):
-        if tsize is not None:
-            self.total = tsize
-        self.update(b * bsize - self.n)
-
-
-def _download_weight(weight):
-    '''
-    Download weight and save to local file
-    '''
-    filename = f'generator_{weight.lower()}.pth'
-    os.makedirs('.cache', exist_ok=True)
-    url = f'{ASSET_HOST}/{filename}'
-    save_path = f'.cache/{filename}'
-
-    if os.path.isfile(save_path):
-        return save_path
-
-    desc = f'Downloading {url} to {save_path}'
-    with DownloadProgressBar(unit='B', unit_scale=True, miniters=1, desc=desc) as t:
-        urllib.request.urlretrieve(url, save_path, reporthook=t.update_to)
-
-    return save_path
 
 
 
