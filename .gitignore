@@ -1,0 +1,8 @@
+ __pycache__/
+*.pyc
+*.zip
+dataset
+spirit.away
+.DS_Store
+.python-version
+notebooks
