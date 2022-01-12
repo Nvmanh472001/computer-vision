@@ -2,5 +2,6 @@ __pycache__/
 *.pyc
 *.zip
 dataset
+notebook
 spirit.away
 .DS_Store
