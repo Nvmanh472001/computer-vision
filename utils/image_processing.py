@@ -10,8 +10,8 @@ _rgb_to_yuv_kernel = torch.tensor([
     [0.114, 0.43601035, -0.10001026]
 ]).float()
 
-# if torch.cuda.is_available():
-#     _rgb_to_yuv_kernel = _rgb_to_yuv_kernel.cuda()
+if torch.cuda.is_available():
+    _rgb_to_yuv_kernel = _rgb_to_yuv_kernel.cuda()
 
 
 def gram(input):
