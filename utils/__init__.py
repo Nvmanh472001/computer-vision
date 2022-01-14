@@ -1,7 +1,6 @@
 from .common import *
 from .image_processing import *
 import os
-import argparse
 
 root_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
