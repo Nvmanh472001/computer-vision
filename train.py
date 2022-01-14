@@ -16,6 +16,7 @@ from utils.common import set_lr
 from utils.common import initialize_weights
 from utils.image_processing import denormalize_input
 from dataset import DataSet
+from utils import DefaultArgs
 from tqdm import tqdm
 
 gaussian_mean = torch.tensor(0.0)
@@ -23,27 +24,30 @@ gaussian_std = torch.tensor(0.1)
 
 
 def parse_args():
+    
+    default_args = DefaultArgs()
+    
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dataset', type=str, default='Hayao')
-    parser.add_argument('--data-dir', type=str, default='/content/dataset')
-    parser.add_argument('--epochs', type=int, default=100)
-    parser.add_argument('--init-epochs', type=int, default=5)
-    parser.add_argument('--batch-size', type=int, default=6)
-    parser.add_argument('--checkpoint-dir', type=str, default='/content/checkpoints')
-    parser.add_argument('--save-image-dir', type=str, default='/content/images')
-    parser.add_argument('--gan-loss', type=str, default='lsgan', help='lsgan / hinge / bce')
-    parser.add_argument('--resume', type=str, default='False')
+    parser.add_argument('--dataset', type=str, default=default_args.dataset)
+    parser.add_argument('--data-dir', type=str, default=default_args.data_dir)
+    parser.add_argument('--epochs', type=int, default=default_args.epochs)
+    parser.add_argument('--init-epochs', type=int, default=default_args.init_epochs)
+    parser.add_argument('--batch-size', type=int, default=default_args.batch_size)
+    parser.add_argument('--checkpoint-dir', type=str, default=default_args.checkpoint_dir)
+    parser.add_argument('--save-image-dir', type=str, default=default_args.save_image_dir)
+    parser.add_argument('--gan-loss', type=str, default=default_args.gan_loss, help='lsgan / hinge / bce')
+    parser.add_argument('--resume', type=str, default=default_args.resume)
     parser.add_argument('--use_sn', action='store_true')
-    parser.add_argument('--save-interval', type=int, default=1)
-    parser.add_argument('--debug-samples', type=int, default=0)
-    parser.add_argument('--lr-g', type=float, default=2e-4)
-    parser.add_argument('--lr-d', type=float, default=4e-4)
-    parser.add_argument('--init-lr', type=float, default=1e-3)
-    parser.add_argument('--wadvg', type=float, default=10.0, help='Adversarial loss weight for G')
-    parser.add_argument('--wadvd', type=float, default=10.0, help='Adversarial loss weight for D')
-    parser.add_argument('--wcon', type=float, default=1.5, help='Content loss weight')
-    parser.add_argument('--wgra', type=float, default=3.0, help='Gram loss weight')
-    parser.add_argument('--wcol', type=float, default=30.0, help='Color loss weight')
+    parser.add_argument('--save-interval', type=int, default=default_args.save_interval)
+    parser.add_argument('--debug-samples', type=int, default=default_args.debug_samples)
+    parser.add_argument('--lr-g', type=float, default=default_args.lr_d)
+    parser.add_argument('--lr-d', type=float, default=default_args.lr_g)
+    parser.add_argument('--init-lr', type=float, default=default_args.init_lr)
+    parser.add_argument('--wadvg', type=float, default=default_args.wadvd, help='Adversarial loss weight for G')
+    parser.add_argument('--wadvd', type=float, default=default_args.wadvd, help='Adversarial loss weight for D')
+    parser.add_argument('--wcon', type=float, default=default_args.wcon, help='Content loss weight')
+    parser.add_argument('--wgra', type=float, default=default_args.wgra, help='Gram loss weight')
+    parser.add_argument('--wcol', type=float, default=default_args.wcol, help='Color loss weight')
     parser.add_argument('--d-layers', type=int, default=3, help='Discriminator conv layers')
     parser.add_argument('--d-noise', action='store_true')
 

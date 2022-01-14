@@ -29,7 +29,7 @@ class DataSet(Dataset):
         if not os.path.exists(digital_img_dir):
             raise FileNotFoundError(f'Folder {digital_img_dir} does not exist')
 
-        self.mean = compute_data_mean(os.path.join(_dir, 'style'))
+        self.mean = compute_data_mean(os.path.join(digital_img_dir, 'style'))
         print(f'Mean(B, G, R) of {dataset} are {self.mean}')
 
         self.debug_samples = args.debug_samples or 0

@@ -1,23 +1,22 @@
-# The edge_smooth.py is from taki0112/CartoonGAN-Tensorflow https://github.com/taki0112/CartoonGAN-Tensorflow#2-do-edge_smooth
-
 import numpy as np
 import cv2, os, argparse
 from glob import glob
 from tqdm import tqdm
 
+from utils import root_path
 
 def parse_args():
     desc = "Edge smoothed"
     parser = argparse.ArgumentParser(description=desc)
-    parser.add_argument('--dataset', type=str, default='Paprika', help='dataset_name')
+    parser.add_argument('--dataset', type=str, default='Hayao', help='dataset_name')
     parser.add_argument('--image-size', type=int, default=256, help='The size of image')
 
     return parser.parse_args()
 
 
 def make_edge_smooth(dataset_name, img_size) :
-    file_list = glob('dataset/{}/{}/*.*'.format(dataset_name, 'style'))
-    save_dir = 'dataset/{}/smooth'.format(dataset_name)
+    file_list = glob('{}/content/dataset/{}/{}/*.*'.format(root_path, dataset_name, 'style'))
+    save_dir = '{}/content/dataset/{}/smooth'.format(root_path,dataset_name)
     os.makedirs(save_dir, exist_ok=True)
 
     kernel_size = 5
