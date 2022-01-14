@@ -11,7 +11,7 @@ class Predictor(cog.Predictor):
     def setup(self):
         pass
 
-    @cog.input("model", type=str, default='Hayao', options=['Shinkai'], help="Digital style model")
+    @cog.input("model", type=str, default='Hayao', help="Digital style model")
     @cog.input("image", type=Path, help="input image")
     def predict(self, image, model='Hayao'):
         transformer = Transformer(model)

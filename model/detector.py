@@ -7,7 +7,7 @@ from detectron2 import model_zoo
 
 import cv2
 import os
-import tqdm
+from tqdm import tqdm
 import numpy as np
 from torch.nn.functional import instance_norm
 
@@ -50,6 +50,8 @@ class Detector:
         for fname in tqdm(files):
             img_path = os.path.join(img_dir, fname)
             img_detector = self.onImage(img_path)
+            ext = fname.split('.')[-1]
+            fname = fname.replace(f'.{ext}', '')
             cv2.imwrite(os.path.join(dest_dir, f'{fname}_detector.jpg'), img_detector)
     
     @staticmethod
