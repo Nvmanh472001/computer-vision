@@ -16,7 +16,7 @@ VALID_FORMATS = {
     'png', 'bmp',
 }
 
-class Detector:
+class Detection:
     def __init__(self):
         self.cfg = get_cfg()
         
@@ -49,10 +49,10 @@ class Detector:
         
         for fname in tqdm(files):
             img_path = os.path.join(img_dir, fname)
-            img_detector = self.onImage(img_path)
+            detection = self.onImage(img_path)
             ext = fname.split('.')[-1]
             fname = fname.replace(f'.{ext}', '')
-            cv2.imwrite(os.path.join(dest_dir, f'{fname}_detector.jpg'), img_detector)
+            cv2.imwrite(os.path.join(dest_dir, f'{fname}_detection.jpg'), detection)
     
     @staticmethod
     def is_valid_file(fname):

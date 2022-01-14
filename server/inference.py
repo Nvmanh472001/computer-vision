@@ -8,6 +8,7 @@ from utils.image_processing import resize_image, normalize_input, denormalize_in
 from utils import read_image
 from tqdm import tqdm
 
+
 cuda_available = torch.cuda.is_available()
 
 VALID_FORMATS = {
@@ -16,7 +17,7 @@ VALID_FORMATS = {
 }
 
 class Transformer:
-    def __init__(self, weight='hayao', add_mean=False):
+    def __init__(self, add_mean=False):
         self.G = Generator()
 
         if cuda_available:
@@ -24,7 +25,7 @@ class Transformer:
         else:
             self.G = self.G.cpu()
         
-        load_weight(self.G, weight)
+        load_weight(self.G)
         self.G.eval()
 
         print("Weight loaded, ready to predict")
@@ -120,4 +121,5 @@ class Transformer:
         ext = fname.split('.')[-1]
         return ext in VALID_FORMATS
 
-        
+
+    
