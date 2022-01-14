@@ -1,6 +1,7 @@
 from .common import *
 from .image_processing import *
 import os
+import argparse
 
 root_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -13,7 +14,7 @@ class DefaultArgs:
         self.init_epochs = 5
         self.batch_size = 6
         self.checkpoint_dir ='{}/content/checkpoints'.format(root_path)
-        self.save_image_dir ='{}/content/images'.format(root_path)
+        self.save_image_dir ='{}/content/images/gan'.format(root_path)
         self.gan_loss = "lsgan"
         self.resume="False"
         self.display_image = True
