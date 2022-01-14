@@ -7,7 +7,6 @@ import tempfile
 from utils.image_processing import resize_image, normalize_input, denormalize_input
 import numpy as np
 
-
 class Predictor(cog.Predictor):
     def setup(self):
         pass

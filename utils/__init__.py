@@ -5,20 +5,26 @@ import os
 root_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 class DefaultArgs:
-    dataset ='Hayao'
-    data_dir ='/content'
-    epochs = 10
-    batch_size = 1
-    checkpoint_dir ='/content/checkpoints'
-    save_image_dir ='/content/images'
-    display_image =True
-    save_interval =2
-    debug_samples =0
-    lr_g = 0.001
-    lr_d = 0.002
-    wadvg = 300.0
-    wadvd = 300.0
-    wcon = 1.5
-    wgra = 3
-    wcol = 10
-    use_sn = False
+    
+    def __init__(self):
+        self.dataset = 'Hayao'
+        self.data_dir = '{}/content/dataset'.format(root_path)
+        self.epochs = 100
+        self.init_epochs = 5
+        self.batch_size = 6
+        self.checkpoint_dir ='{}/content/checkpoints'.format(root_path)
+        self.save_image_dir ='{}/content/images'.format(root_path)
+        self.gan_loss = "lsgan"
+        self.resume="False"
+        self.display_image = True
+        self.save_interval = 1
+        self.debug_samples = 0
+        self.lr_g = 2e-4
+        self.lr_d = 4e-4
+        self.init_lr = 1e-3
+        self.wadvg = 10.0
+        self.wadvd = 10.0
+        self.wcon = 1.5
+        self.wgra = 3.0
+        self.wcol = 30.0
+        self.use_sn = False
