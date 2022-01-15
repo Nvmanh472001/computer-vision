@@ -20,12 +20,12 @@ class Predictor(cog.Predictor):
             img = read_image(str(image))
             digital_img = transformer.transform(resize_image(img))[0]
             digital_img = denormalize_input(digital_img, dtype=np.int16)
-            out_path = Path(tempfile.mkdtemp()) / "out_{}.png".format(model)
+            out_path = Path(tempfile.mkdtemp()) / "out.png"
             cv2.imwrite(str(out_path), digital_img[..., ::-1])
         else:
             detection = Detection()
             img = detection.onImage(str(image))
-            out_path = Path(tempfile.mkdtemp()) / "out_{}.png".format(model)
+            out_path = Path(tempfile.mkdtemp()) / "out.png".format(model)
             cv2.imwrite(str(out_path), img)
 
         
