@@ -9,7 +9,7 @@ def HandlelImage(image_file, model):
     img_save_path = os.path.join("../server/content/real/{}".format(model), image_file.name)
     
     with open(img_save_path, "wb") as f:
-                f.write((image_file).getbuffer())    
+        f.write((image_file).getbuffer())    
             
     img_late = "./image/{}/output.png".format(model)
     img_path_server = "./content/real/{}/".format(model) + image_file.name
