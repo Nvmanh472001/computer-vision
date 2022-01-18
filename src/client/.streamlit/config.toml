@@ -1,0 +1,7 @@
+[theme]
+backgroundColor="#0E1117"
+textColor="#00000"
+secondaryBackgroundColor="#31333F"
+font="serif"
+[server]
+maxUploadSize = 1
