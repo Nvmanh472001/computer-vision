@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.python-version
+*.pdf
+*.pptx
+.cog/
+docs/

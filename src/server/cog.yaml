@@ -1,0 +1,17 @@
+build:
+  system_packages:
+    - "libgl1-mesa-glx"
+    - "libglib2.0-0"
+    - "python3-dev"
+    - "git"
+  python_version: "3.8"
+  python_packages:
+    - "torch==1.8.0"
+    - "torchvision==0.9.0"
+    - "numpy==1.21.1"
+    - "opencv-python==4.3.0.38"
+    - "tqdm==4.21.0"
+  run:
+    - "git clone https://github.com/facebookresearch/detectron2.git"
+    - "python -m pip install -e detectron2"
+predict: "predict.py:Predictor"
